@@ -1,5 +1,4 @@
-import package.Classes.*;
-package GUI;
+package Main;
 
 
 import javax.swing.*;
