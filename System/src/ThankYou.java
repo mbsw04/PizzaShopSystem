@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class ThankYou{
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Thank You");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setSize(750, 750);
-        frame.getContentPane().setBackground(Color.WHITE);
+public class ThankYou extends JDialog{
+    ThankYou(JFrame frame) {
+        super(frame);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLayout(null);
+        setSize(750, 750);
+        getContentPane().setBackground(Color.WHITE);
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.cyan);
@@ -20,8 +20,7 @@ public class ThankYou{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                System.exit(0);
+                dispose();
             }
         });
 
@@ -43,12 +42,14 @@ public class ThankYou{
         txt1.setForeground(new Color(0x000000));
         txt1.setFont(new Font("MV Boli", Font.PLAIN, 25));
 
-        frame.add(panel);
-        frame.add(button);
+        add(panel);
+        add(button);
         panel.add(text);
         panel.add(txt);
         button.add(txt1);
-        frame.setVisible(true);
+
+        setModal(true);
+        setVisible(true);
     }
 }
 

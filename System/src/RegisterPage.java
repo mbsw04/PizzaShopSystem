@@ -20,6 +20,7 @@ public class RegisterPage extends JDialog{
     private JTextField lastName;
     private JTextField Email;
     private JTextField Address;
+    private JTextField Pass;
 
     ImageIcon logo1 = new ImageIcon("logo.png");
 
@@ -150,6 +151,8 @@ public class RegisterPage extends JDialog{
             }
         });
 
+
+
 /*
         UserSwitch1Button.addActionListener(new ActionListener() {
             @Override
@@ -168,11 +171,29 @@ public class RegisterPage extends JDialog{
         });
 
         RegBTN.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
-                new EnterPage(null);
+                boolean def =((firstName.getText()==" "||firstName.getText()=="First Name") ||
+                        (lastName.getText()==" "||lastName.getText()=="Last Name") ||
+                        (Phone.getText()==" "||Phone.getText()=="Phone: (ex 1234567890)") ||
+                        (State.getText()==" "||State.getText()=="State: (ex GA)") ||
+                        (Zip.getText()==" "||Zip.getText()=="Zip: (ex 111111)") ||
+                        (City.getText()==" "||City.getText()=="City: (Ex Marietta)") ||
+                        (Address.getText()==" "||Address.getText()=="Address: (ex 1234 Pizza Street)") ||
+                        (Email.getText()==" "||Email.getText()=="Email: (ex 123@gmail.com)") ||
+                        (Pass.getText()==""||Pass.getText()==" ")||
+                        Apt.getText()=="Apt: (ex 111)"
+                );
+                if(def){
+                    JOptionPane.showMessageDialog(RegisterPage.this,"Some Fields Empty\n all need to be filled to register");
+                }else{
+                    resource.uh.register(new User(firstName.getText(),lastName.getText(),Email.getText(),Phone.getText(),Address.getText(),Pass.getText(),false,false));
+                    JOptionPane.showMessageDialog(RegisterPage.this,"User Registered\nRedirecting to Login");
+                    dispose();
+                    new LoginPage(null);
+
+                }
             }
         });
         setVisible(true);

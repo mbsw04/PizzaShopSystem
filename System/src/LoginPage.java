@@ -13,7 +13,8 @@ public class LoginPage extends JDialog{
     private JPasswordField passwordField1;
     private JButton FPBTN;
 
-    ImageIcon logo1 = new ImageIcon("logo.png");
+
+
 
     public LoginPage(JFrame frame){
 
@@ -22,7 +23,6 @@ public class LoginPage extends JDialog{
         setContentPane(Login);
         setMinimumSize(new Dimension(1520,880));
         setModal(true);
-        setIconImage(logo1.getImage());// Doesn't work gotta get a 16px icon !!
         setLocationRelativeTo(frame);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -30,9 +30,19 @@ public class LoginPage extends JDialog{
         LoginBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
-                new Application(null);
+                User x = resource.uh.getUser(EmailTextField.getText());
+                //User x = null;
+                if(x == null){
+                    JOptionPane.showMessageDialog(LoginPage.this,"Email or Password Incorrect\nTry Again!!");
+                }else{
+                    if(passwordField1.getText().compareTo(x.getPassword())==0){
+                        dispose();
+                        new Application(null,x);
+
+                    }else{
+                        JOptionPane.showMessageDialog(LoginPage.this,"Email or Password Incorrect\nTry Again!!");
+                    }
+                }
             }
         });
 

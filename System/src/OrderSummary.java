@@ -30,22 +30,12 @@ public class OrderSummary extends JDialog{
         t1.setBounds(10,0,800,30);
         t1.setFont(new Font("MV Boli", Font.PLAIN, 25));
         leftPanel.add(t1);
-        JLabel t2 = new JLabel("10in Pizza-            $10");
-        t2.setBounds(10,100,300,30);
-        t2.setFont(new Font("MV Boli", Font.PLAIN, 20));
-        leftPanel.add(t2);
-        JLabel t3 = new JLabel("  - Pepperoni");
-        t3.setBounds(10,150,200,30);
-        t3.setFont(new Font("MV Boli", Font.PLAIN, 20));
-        leftPanel.add(t3);
-        JLabel t4 = new JLabel("  - Cheese");
-        t4.setBounds(10,200,200,30);
-        t4.setFont(new Font("MV Boli", Font.PLAIN, 20));
-        leftPanel.add(t4);
-        JLabel t5 = new JLabel("Small Pepsi-           $3");
-        t5.setBounds(10,350,300,30);
-        t5.setFont(new Font("MV Boli", Font.PLAIN, 20));
-        leftPanel.add(t5);
+        JTextPane orderSummary = new JTextPane();
+        orderSummary.setBounds(10,50,800,700);
+        orderSummary.setFont(new Font("MV Boli", Font.PLAIN, 20));
+        orderSummary.setEditable(false);
+        String orderStr = " ";
+        orderSummary.setText(orderStr);
         JLabel t6 = new JLabel("Tax (8%)       -     $1.12");
         t6.setBounds(10,400,300,30);
         t6.setFont(new Font("MV Boli", Font.PLAIN, 20));
@@ -74,6 +64,14 @@ public class OrderSummary extends JDialog{
         JButton b2 = new JButton("Confirm Order");
         b2.setBounds(300,310,290,50);
         rightPanel.add(b2);
+
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ThankYou(null);
+                dispose();
+            }
+        });
 
 
         setModal(true);

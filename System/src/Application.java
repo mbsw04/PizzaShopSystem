@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 public class Application extends JDialog{
     private JPanel panel1;
@@ -26,9 +23,15 @@ public class Application extends JDialog{
     private JTextPane textPane_TH;
     private JScrollPane THScroll;
     private JScrollPane CIScroll;
-    private JList EMlist;
-    private JList CIlist;
-    private JButton addNewEmployeeButton;
+    private JList<String> EMlist;
+    private JList<FoodItems> CIlist;
+    private JButton AddBTN;
+    private JButton delBTN;
+    private JPanel list;
+    private JTextPane EM_Info;
+    private JTextField CI_Info;
+
+    public User currentUser;
 
     public static void cus(JPanel x){
 
@@ -124,7 +127,7 @@ public class Application extends JDialog{
         x.add(leftPanel);
     }
 
-    public static void Emp(JPanel x){
+    public static void Emp(JPanel x, User y){
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(null);
         leftPanel.setBackground(Color.lightGray);
@@ -185,25 +188,25 @@ public class Application extends JDialog{
         p10.setBackground(Color.white);
         p10.setBounds(500, 310, 320, 50);
 
-        JLabel label1 = new JLabel("Address:");
+        JLabel label1 = new JLabel("Address: "+y.getAddress());
         label1.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label2 = new JLabel("City:");
+        JLabel label2 = new JLabel("City: dalton");
         label2.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label3 = new JLabel("Zip:");
+        JLabel label3 = new JLabel("Zip: 30103");
         label3.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label4 = new JLabel("Phone:");
+        JLabel label4 = new JLabel("Phone: "+y.phoneNum);
         label4.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label5 = new JLabel("Full Name:");
+        JLabel label5 = new JLabel("Full Name: "+y.firstName+" "+y.lastName);
         label5.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label6 = new JLabel("Email:");
+        JLabel label6 = new JLabel("Email: "+y.email);
         label6.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label7 = new JLabel("Phone:");
+        JLabel label7 = new JLabel("Phone: "+y.phoneNum);
         label7.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label8 = new JLabel("Hourly:");
+        JLabel label8 = new JLabel("Hourly: 16");
         label8.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label9 = new JLabel("Pay Check:");
+        JLabel label9 = new JLabel("Pay Check: 289.56");
         label9.setFont(new Font("MV Boli", Font.PLAIN, 15));
-        JLabel label10 = new JLabel("Next Pay Date:");
+        JLabel label10 = new JLabel("Next Pay Date: 2/24");
         label10.setFont(new Font("MV Boli", Font.PLAIN, 15));
 
         leftPanel.add(picture);
@@ -236,8 +239,9 @@ public class Application extends JDialog{
 
 
 
-    Application(JFrame frame){
+    Application(JFrame frame,User x){
         super(frame);
+        currentUser = x;
         setTitle("Mama's Pizzeria");
         setContentPane(panel1);
         setMinimumSize(new Dimension(1565,880));
@@ -484,6 +488,7 @@ public class Application extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new OrderSummary(null);
+                MainPane.setSelectedIndex(0);
 
             }
         });
@@ -1034,11 +1039,70 @@ public class Application extends JDialog{
         });
         rightPanel.add(orderSummary);
 
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
 
         // Info TAB
         InfoTAB.setLayout(null);
-        cus(InfoTAB);
+        if(x.isManager){
+            Emp(InfoTAB,x);
+            MainPane.setEnabledAt(4, true);
+        }else if(x.isEmployee){
+            Emp(InfoTAB,x);
+            MainPane.setEnabledAt(4, false);
+        }else{
+            cus(InfoTAB);
+            MainPane.setEnabledAt(4, false);
+        }
+
+        if(x.isManager) {
+
+            User[] t = resource.uh.getUserlist();
+            String[] n = new String[t.length];
+            for (User u : t) {
+                int i = 0;
+                n[i] = u.getFirstName() + " " + u.getLastName();
+            }
+
+            EMlist.setListData(n);
+
+            EMlist.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int index = EMlist.getSelectedIndex();
+                    EM_Info.setText(t[index].toString());
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+        }
+
+
+
+
 
 
 

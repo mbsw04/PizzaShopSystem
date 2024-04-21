@@ -88,6 +88,12 @@ public class EditPersonalInfo extends JDialog{
         });
         JButton b2 = new JButton("Save");
         b2.setBounds(425, 600, 150, 50);
+        b2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the popup
+                dispose(); // This line should be correct
+            }
+        });
 
         setContentPane(panel);
         panel.add(p1);
