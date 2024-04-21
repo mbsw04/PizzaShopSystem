@@ -1,24 +1,26 @@
-package Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EnterPage extends JDialog{
-    private JPanel Enter;
-    private JLabel Title;
-    private JButton loginBTN;
-    private JButton regBTN;
-    private JButton ExitBTN;
-
+public class ForgotPassPage extends JDialog {
     ImageIcon logo1 = new ImageIcon("Main/logo.png");
+    private JPanel ForgotPass;
+    private JButton BackBTN;
+    private JButton ChangePassBTN;
+    private JTextField NewPassText;
+    private JLabel Logo;
+    private JButton SendCode;
+    private JLabel EmailLabel;
+    private JLabel CodeLabel;
+    private JLabel NewPass;
+    private JTextField EmailText;
+    private JTextField CodeText;
 
-    public EnterPage(JFrame frame){
-
+    public ForgotPassPage(JFrame frame){
         super(frame);
-        setTitle("Mama's Pizzeria");
-        setContentPane(Enter);
+        setTitle("Login");
+        setContentPane(ForgotPass);
         setMinimumSize(new Dimension(1520,880));
         setModal(true);
         setIconImage(logo1.getImage());// Doesn't work gotta get a 16px icon !!
@@ -26,43 +28,31 @@ public class EnterPage extends JDialog{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 
-        loginBTN.addActionListener(new ActionListener() {
+
+        BackBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 dispose();
                 new LoginPage(null);
-
-
             }
         });
-
-        regBTN.addActionListener(new ActionListener() {
+        ChangePassBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
-                new RegisterPage(null);
+
             }
         });
-
-        ExitBTN.addActionListener(new ActionListener() {
+        SendCode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
-                System.exit(0);
+
             }
         });
-
 
         setVisible(true);
-
     }
 
-    public static void main(String[] args) {
-        EnterPage test = new EnterPage(null);
 
-    }
 
 }
