@@ -1111,10 +1111,4 @@ public class Application extends JDialog{
 
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-       // Application app = new Application(null);
-    }
-
-
 }

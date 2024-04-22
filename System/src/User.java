@@ -102,9 +102,7 @@ class User {
     /*
 
 */
-    public void changePersonalInfo(String firstName, String lastName, String email, String phoneNum, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public void changePersonalInfo(String email, String phoneNum, String address) {
         this.email = email;
         this.phoneNum = phoneNum;
         this.address = address;

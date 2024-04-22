@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LoginForm.java:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LoginForm_java_jar</output-path>
+    <root id="archive" name="LoginForm.java.jar">
+      <element id="module-output" name="System" />
+    </root>
+  </artifact>
+</component>

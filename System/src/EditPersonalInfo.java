@@ -90,7 +90,8 @@ public class EditPersonalInfo extends JDialog{
         b2.setBounds(425, 600, 150, 50);
         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Close the popup
+               // if()
+
                 dispose(); // This line should be correct
             }
         });
@@ -122,9 +123,5 @@ public class EditPersonalInfo extends JDialog{
         setModal(true);
         setVisible(true);
 
-    }
-
-    public static void main(String[] args) {
-        new EditPersonalInfo(null);
     }
 }

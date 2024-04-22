@@ -37,6 +37,7 @@ public class LoginPage extends JDialog{
                 }else{
                     if(passwordField1.getText().compareTo(x.getPassword())==0){
                         dispose();
+                        resource.currentUser = x;
                         new Application(null,x);
 
                     }else{

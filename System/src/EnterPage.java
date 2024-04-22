@@ -59,9 +59,4 @@ public class EnterPage extends JDialog{
 
     }
 
-    public static void main(String[] args) {
-        EnterPage test = new EnterPage(null);
-
-    }
-
 }
